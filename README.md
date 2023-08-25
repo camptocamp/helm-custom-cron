@@ -4,6 +4,10 @@ With this chart you can easily deploy a simple custom cron on Kubernetes, with o
 
 [See as example](./tests/values.yaml).
 
+## Schema documentation
+
+Documentation based on the schema defined in [values.md](./values.md).
+
 ## Contributing
 
 Install the pre-commit hooks:

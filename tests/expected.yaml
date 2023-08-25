@@ -123,9 +123,6 @@ spec:
                 httpGet:
                   path: /
                   port: http
-                initialDelaySeconds: 5
-                periodSeconds: 20
-                timeoutSeconds: 10
           volumes:
           - emptyDir: {}
             name: my-volume

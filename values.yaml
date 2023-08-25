@@ -8,8 +8,6 @@ global:
 nameOverride: ''
 fullnameOverride: ''
 
-replicaCount: 1
-
 initContainers: {}
 containers: {}
 
@@ -32,22 +30,6 @@ securityContext:
   # capabilities:
   #   drop:
   #   - ALL
-
-service:
-  type: ClusterIP
-  ports: []
-
-ingress:
-  enabled: false
-  annotations:
-    {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  paths: []
-  hosts:
-    - host: chart-example.local
-      # tls:
-      #   - secretName: chart-example-tls
 
 nodeSelector: {}
 
