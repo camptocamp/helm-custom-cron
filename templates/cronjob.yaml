@@ -64,7 +64,7 @@ spec:
               readinessProbe:
                 {{- toYaml . | nindent 16 }}
               {{- end }}
-              {{- with $config.readinessProbe }}
+              {{- with $config.startupProbe }}
               startupProbe:
                 {{- toYaml . | nindent 16 }}
               {{- end }}

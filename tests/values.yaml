@@ -62,27 +62,6 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 33 # www-data
 
-ingress:
-  enabled: true
-  servicePort: 8080
-  paths:
-    - /
-    - /custom
-  hosts:
-    - name: int
-      host: int.local
-    - name: prod
-      host: prod.local
-      tls:
-        secretName: prod-custom
-
-service:
-  ports:
-    - name: http
-      port: 8080
-      protocol: TCP
-      targetPort: http
-
 schedule: 0 0 * * *
 successfulJobsHistoryLimit: 2
 failedJobsHistoryLimit: 5
