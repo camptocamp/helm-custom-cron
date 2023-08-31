@@ -5,8 +5,8 @@ apiVersion: batch/v1beta1
 {{- end }}
 kind: CronJob
 metadata:
-  name: {{ include "common.fullname" ( dict "root" . "service" .Values ) }}
-  {{- include "common.metadata" ( dict "root" . "service" .Values ) | nindent 2 }}
+  name: {{ include "common.fullname" ( dict "root" $ "service" .Values ) }}
+  {{- include "common.metadata" ( dict "root" $ "service" .Values ) | nindent 2 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
   successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
@@ -16,9 +16,9 @@ spec:
     spec:
       backoffLimit: {{ .Values.backoffLimit }}
       template:
-        metadata: {{- include "common.podMetadata" ( dict "root" . "service" .Values ) | nindent 10 }}
+        metadata: {{- include "common.podMetadata" ( dict "root" $ "service" .Values ) | nindent 10 }}
         spec:
-          {{- include "common.podConfig" ( dict "root" . "service" .Values ) | nindent 10 }}
+          {{- include "common.podConfig" ( dict "root" $ "service" .Values ) | nindent 10 }}
           restartPolicy: {{ .Values.restartPolicy }}
           {{- if .Values.initContainers }}
           initContainers:
@@ -26,13 +26,18 @@ spec:
             - name: {{ $name }}
               {{- include "common.containerConfig" ( dict "root" $ "container" $config ) | nindent 14 }}
               {{- with $config.command }}
-              command: {{ $config.command | toYaml | nindent 16 }}
+              command: {{ . | toYaml | nindent 16 }}
               {{- end }}
               {{- with $config.args }}
-              args: {{ $config.args | toYaml | nindent 16 }}
+              args: {{ . | toYaml | nindent 16 }}
               {{- end }}
               {{- with $config.volumeMounts }}
-              volumeMounts: {{ $config.volumeMounts | toYaml | nindent 16 }}
+              volumeMounts:
+              {{- include "common.dictToList" ( dict "keyName" "mountPath" "contents" . ) | nindent 16 -}}
+              {{- end -}}
+              {{- with $config.volumeDevices -}}
+              volumeDevices:
+              {{- include "common.dictToList" ( dict "keyName" "devicePath" "contents" . ) | nindent 16 }}
               {{- end }}
           {{- end }}
           {{- end }}
@@ -50,26 +55,21 @@ spec:
               {{- end }}
               {{- with $config.volumeMounts }}
               volumeMounts:
-                {{- . | toYaml | nindent 16 }}
+              {{- include "common.dictToList" ( dict "keyName" "mountPath" "contents" . ) | nindent 16 }}
+              {{- end }}
+              {{- with $config.volumeDevices }}
+              volumeDevices:
+              {{- include "common.dictToList" ( dict "keyName" "devicePath" "contents" . ) | nindent 16 }}
               {{- end }}
               {{- with $config.ports }}
               ports:
-                {{- $config.ports | toYaml | nindent 16 }}
+              {{- include "common.dictToList" ( dict "contents" . ) | nindent 16 }}
               {{- end }}
-              {{- with $config.livenessProbe }}
-              livenessProbe:
-                {{- toYaml . | nindent 16 }}
-              {{- end }}
-              {{- with $config.readinessProbe }}
-              readinessProbe:
-                {{- toYaml . | nindent 16 }}
-              {{- end }}
-              {{- with $config.startupProbe }}
-              startupProbe:
-                {{- toYaml . | nindent 16 }}
+              {{- with $config.workingDir }}
+              workingDir: {{ . }}
               {{- end }}
           {{- end }}
           {{- with .Values.volumes }}
           volumes:
-            {{- toYaml . | nindent 10 }}
+          {{- include "common.dictToList" ( dict "contents" . ) | nindent 12 }}
           {{- end }}

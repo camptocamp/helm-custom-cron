@@ -26,8 +26,8 @@ initContainers:
       - sleep
       - '3600'
     volumeMounts:
-      - name: my-volume
-        mountPath: /tmp/my-volume
+      /tmp/my-volume:
+        name: my-volume
 
 containers:
   cc:
@@ -50,12 +50,12 @@ containers:
         path: /
         port: http
     ports:
-      - name: http
+      http:
         containerPort: 8080
         protocol: TCP
 
 volumes:
-  - name: my-volume
+  my-volume:
     emptyDir: {}
 
 securityContext:
