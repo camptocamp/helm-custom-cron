@@ -231,7 +231,12 @@
       }
     },
     "volumeMounts": {
-      "type": "array"
+      "type": "object",
+      "description": "Container: Volume mounts, the key is the mountPath of the volume"
+    },
+    "volumeDevices": {
+      "type": "object",
+      "description": "Container: Volume devices, the key is the devicePath of the volume"
     }
   },
   "additionalProperties": false,
@@ -317,22 +322,8 @@
       "description": "The backoff limit"
     },
     "volumes": {
-      "type": "array",
-      "description": "The volumes configuration",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name of the volume"
-          },
-          "emptyDir": {
-            "type": "object",
-            "description": "The emptyDir volume configuration"
-          }
-        }
-      }
+      "type": "object",
+      "description": "The volumes configuration, the key is the name of the volume"
     },
     "restartPolicy": {
       "type": "string",
@@ -361,6 +352,9 @@
           },
           "volumeMounts": {
             "$ref": "#/definitions/volumeMounts"
+          },
+          "volumeDevices": {
+            "$ref": "#/definitions/volumeDevices"
           }
         }
       }
@@ -389,18 +383,28 @@
           "volumeMounts": {
             "$ref": "#/definitions/volumeMounts"
           },
+          "volumeDevices": {
+            "$ref": "#/definitions/volumeDevices"
+          },
           "ports": {
-            "type": "array"
-          },
-          "livenessProbe": {
-            "type": "object"
-          },
-          "readinessProbe": {
-            "type": "object"
-          },
-          "startupProbe": {
-            "type": "object"
+            "type": "object",
+            "description": "The ports, key is the name of the port"
           }
+        }
+      }
+    },
+    "podMonitor": {
+      "type": "object",
+      "description": "The Prometheus Pod monitor configuration",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable the pod monitor for this service"
+        },
+        "endpoint": {
+          "type": "object",
+          "description": "The endpoint of the pod monitor"
         }
       }
     }

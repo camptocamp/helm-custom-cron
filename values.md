@@ -27,10 +27,7 @@
 - **`failedJobsHistoryLimit`** _(integer)_: The number of failed jobs to keep in history.
 - **`concurrencyPolicy`** _(string)_: The concurrency policy.
 - **`backoffLimit`** _(integer)_: The backoff limit.
-- **`volumes`** _(array)_: The volumes configuration.
-  - **Items** _(object)_: Cannot contain additional properties.
-    - **`name`** _(string)_: The name of the volume.
-    - **`emptyDir`** _(object)_: The emptyDir volume configuration.
+- **`volumes`** _(object)_: The volumes configuration, the key is the name of the volume.
 - **`restartPolicy`** _(string)_: The restart policy.
 - **`initContainers`** _(object)_: The init containers configuration. Can contain additional properties.
   - **Additional Properties** _(object)_
@@ -40,6 +37,7 @@
     - **`command`**: Refer to _[#/definitions/command](#definitions/command)_.
     - **`args`**: Refer to _[#/definitions/args](#definitions/args)_.
     - **`volumeMounts`**: Refer to _[#/definitions/volumeMounts](#definitions/volumeMounts)_.
+    - **`volumeDevices`**: Refer to _[#/definitions/volumeDevices](#definitions/volumeDevices)_.
 - **`containers`** _(object)_: The containers configuration. Can contain additional properties.
   - **Additional Properties** _(object)_
     - **`image`**: Refer to _[#/definitions/image](#definitions/image)_.
@@ -48,10 +46,11 @@
     - **`command`**: Refer to _[#/definitions/command](#definitions/command)_.
     - **`args`**: Refer to _[#/definitions/args](#definitions/args)_.
     - **`volumeMounts`**: Refer to _[#/definitions/volumeMounts](#definitions/volumeMounts)_.
-    - **`ports`** _(array)_
-    - **`livenessProbe`** _(object)_
-    - **`readinessProbe`** _(object)_
-    - **`startupProbe`** _(object)_
+    - **`volumeDevices`**: Refer to _[#/definitions/volumeDevices](#definitions/volumeDevices)_.
+    - **`ports`** _(object)_: The ports, key is the name of the port.
+- **`podMonitor`** _(object)_: The Prometheus Pod monitor configuration. Cannot contain additional properties.
+  - **`enabled`** _(boolean)_: Enable the pod monitor for this service.
+  - **`endpoint`** _(object)_: The endpoint of the pod monitor.
 
 ## Definitions
 
@@ -108,4 +107,5 @@
   - **Items** _(string)_
 - <a id="definitions/args"></a>**`args`** _(array)_: Container: Arguments.
   - **Items** _(string)_
-- <a id="definitions/volumeMounts"></a>**`volumeMounts`** _(array)_
+- <a id="definitions/volumeMounts"></a>**`volumeMounts`** _(object)_: Container: Volume mounts, the key is the mountPath of the volume.
+- <a id="definitions/volumeDevices"></a>**`volumeDevices`** _(object)_: Container: Volume devices, the key is the devicePath of the volume.

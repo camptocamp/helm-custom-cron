@@ -68,6 +68,7 @@ spec:
               volumeMounts:
                 - mountPath: /tmp/my-volume
                   name: my-volume
+
           containers:
             - name: cc
               securityContext:
@@ -104,25 +105,12 @@ spec:
               volumeMounts:
                 - mountPath: /tmp/my-volume
                   name: my-volume
+
               ports:
-                - containerPort: 8080
-                  name: http
+                - name: http
+                  containerPort: 8080
                   protocol: TCP
-              livenessProbe:
-                httpGet:
-                  path: /
-                  port: http
-              readinessProbe:
-                httpGet:
-                  path: /
-                  port: http
-                initialDelaySeconds: 5
-                periodSeconds: 20
-                timeoutSeconds: 10
-              startupProbe:
-                httpGet:
-                  path: /
-                  port: http
+
           volumes:
-          - emptyDir: {}
-            name: my-volume
+            - name: my-volume
+              emptyDir: {}
