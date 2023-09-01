@@ -1,4 +1,25 @@
 ---
+# Source: custom-cron/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-custom-cron
+  labels:
+    helm.sh/chart: custom-cron
+    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: custom-cron
+    app.kubernetes.io/instance: custom
+    app.kubernetes.io/component: main
+data:
+  CHART_NAME: custom-cron
+  RELEASE_NAME: custom
+  RELEASE_NAMESPACE: default
+  SERVICE_CONTAINER_AA_IMAGE_TAG: latest
+  SERVICE_CONTAINER_BB_IMAGE_TAG: latest
+  SERVICE_CONTAINER_CC_IMAGE_TAG: latest
+  SERVICE_CONTAINER_DD_IMAGE_TAG: latest
+---
 # Source: custom-cron/templates/cronjob.yaml
 apiVersion: batch/v1
 kind: CronJob

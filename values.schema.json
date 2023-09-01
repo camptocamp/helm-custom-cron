@@ -124,7 +124,9 @@
           "type": ["null", "string"],
           "description": "Image sha"
         }
-      }
+      },
+      "required": ["repository"],
+      "anyOf": [{ "required": ["tag"] }, { "required": ["sha"] }]
     },
     "env": {
       "type": "object",
@@ -321,6 +323,10 @@
       "type": "integer",
       "description": "The backoff limit"
     },
+    "metadata": {
+      "type": "boolean",
+      "description": "Generate a metadata configMap"
+    },
     "volumes": {
       "type": "object",
       "description": "The volumes configuration, the key is the name of the volume"
@@ -356,7 +362,8 @@
           "volumeDevices": {
             "$ref": "#/definitions/volumeDevices"
           }
-        }
+        },
+        "required": ["image"]
       }
     },
     "containers": {
@@ -390,7 +397,8 @@
             "type": "object",
             "description": "The ports, key is the name of the port"
           }
-        }
+        },
+        "required": ["image"]
       }
     },
     "podMonitor": {

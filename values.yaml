@@ -8,6 +8,8 @@ global:
 nameOverride: ''
 fullnameOverride: ''
 
+metadata: true
+
 initContainers: {}
 containers: {}
 
