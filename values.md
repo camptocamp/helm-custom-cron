@@ -27,6 +27,7 @@
 - **`failedJobsHistoryLimit`** _(integer)_: The number of failed jobs to keep in history.
 - **`concurrencyPolicy`** _(string)_: The concurrency policy.
 - **`backoffLimit`** _(integer)_: The backoff limit.
+- **`metadata`** _(boolean)_: Generate a metadata configMap.
 - **`volumes`** _(object)_: The volumes configuration, the key is the name of the volume.
 - **`restartPolicy`** _(string)_: The restart policy.
 - **`initContainers`** _(object)_: The init containers configuration. Can contain additional properties.
@@ -81,7 +82,9 @@
 - <a id="definitions/tolerations"></a>**`tolerations`** _(array)_: [helm-common] Pod: Tolerations.
 - <a id="definitions/nodeSelector"></a>**`nodeSelector`** _(object)_: [helm-common] Pod: Node selector.
 - <a id="definitions/image"></a>**`image`** _(object)_: [helm-common] Container: Image configuration.
-  - **`repository`** _(string)_: Image repository.
+  - ## **Any of**
+    -
+  - **`repository`** _(string, required)_: Image repository.
   - **`tag`** _(string)_: Image tag, used if the sha is not defined.
   - **`sha`** _(['null', 'string'])_: Image sha.
 - <a id="definitions/env"></a>**`env`** _(object)_: [helm-common] Container: Environment variables. Can contain additional properties.
