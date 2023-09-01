@@ -10,16 +10,16 @@ data:
   RELEASE_NAMESPACE: {{ .Release.Namespace }}
 {{- range $containerName, $containerDefinition := ( default .Values.initContainers ( dict ) ) }}
 {{- if $containerDefinition.image.tag }}
-  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.tag }}
+  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.tag | quote }}
 {{- else }}
-  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.sha }}
+  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.sha | quote }}
 {{- end }}
 {{- end }}
 {{- range $containerName, $containerDefinition := ( default .Values.containers ( dict ) ) }}
 {{- if $containerDefinition.image.tag }}
-  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.tag }}
+  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.tag | quote }}
 {{- else }}
-  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.sha }}
+  SERVICE_CONTAINER_{{ $containerName | upper }}_IMAGE_TAG: {{ $containerDefinition.image.sha | quote }}
 {{- end }}
 {{- end }}
 {{- end }}

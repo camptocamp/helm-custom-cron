@@ -2,7 +2,7 @@ initContainers:
   aa: &aa
     image:
       repository: camptocamp/custom-aa
-      tag: latest
+      tag: '1.0'
       sha:
     command:
       - sleep

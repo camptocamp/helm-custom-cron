@@ -15,10 +15,10 @@ data:
   CHART_NAME: custom-cron
   RELEASE_NAME: custom
   RELEASE_NAMESPACE: default
-  SERVICE_CONTAINER_AA_IMAGE_TAG: latest
-  SERVICE_CONTAINER_BB_IMAGE_TAG: latest
-  SERVICE_CONTAINER_CC_IMAGE_TAG: latest
-  SERVICE_CONTAINER_DD_IMAGE_TAG: latest
+  SERVICE_CONTAINER_AA_IMAGE_TAG: "1.0"
+  SERVICE_CONTAINER_BB_IMAGE_TAG: "latest"
+  SERVICE_CONTAINER_CC_IMAGE_TAG: "1.0"
+  SERVICE_CONTAINER_DD_IMAGE_TAG: "latest"
 ---
 # Source: custom-cron/templates/cronjob.yaml
 apiVersion: batch/v1
@@ -58,7 +58,7 @@ spec:
               securityContext:
                 runAsNonRoot: true
                 runAsUser: 33
-              image: "camptocamp/custom-aa:latest"
+              image: "camptocamp/custom-aa:1.0"
               imagePullPolicy: IfNotPresent
               env:
                 - name: "TEST"
@@ -95,7 +95,7 @@ spec:
               securityContext:
                 runAsNonRoot: true
                 runAsUser: 33
-              image: "camptocamp/custom-aa:latest"
+              image: "camptocamp/custom-aa:1.0"
               imagePullPolicy: IfNotPresent
               env:
                 - name: "TEST"
