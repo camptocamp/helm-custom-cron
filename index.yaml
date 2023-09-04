@@ -3,6 +3,19 @@ entries:
   custom-cron:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2023-09-04T14:32:01.193752648Z"
+    dependencies:
+    - name: common
+      repository: https://camptocamp.github.io/helm-common
+      version: 1.0.1
+    description: A custom cron with everything needed
+    digest: eee855bff1eb1af3d350cc8e1e1408aec1325ab1ab4a41a4b174d66498f8d00a
+    name: custom-cron
+    urls:
+    - https://github.com/camptocamp/helm-custom-cron/releases/download/1.0.0/custom-cron-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2023-09-01T08:43:02.134666972Z"
     dependencies:
     - name: common
@@ -131,4 +144,4 @@ entries:
     urls:
     - https://github.com/camptocamp/helm-custom-cron/releases/download/0.1.0/custom-cron-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-01T08:43:02.134717772Z"
+generated: "2023-09-04T14:32:01.193811948Z"
