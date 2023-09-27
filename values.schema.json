@@ -18,7 +18,7 @@
     },
     "prefixTrunc": {
       "type": "integer",
-      "description": "[helm-common] The prefix trunk length (release anf chart name)",
+      "description": "[helm-common] The prefix trunk length (release and chart name)",
       "default": 40
     },
     "serviceAccount": {
@@ -59,7 +59,7 @@
     },
     "configMapNameOverride": {
       "type": "object",
-      "description": "[helm-common] global: Used to be able to globally override the name of the config map",
+      "description": "[helm-common] global: Used to be able to globally override the name of the ConfigMap",
       "additionalProperties": {
         "type": "string"
       }
@@ -325,7 +325,7 @@
     },
     "metadata": {
       "type": "boolean",
-      "description": "Generate a metadata configMap"
+      "description": "Generate a metadata ConfigMap"
     },
     "volumes": {
       "type": "object",
@@ -337,7 +337,7 @@
     },
     "initContainers": {
       "type": "object",
-      "description": "The init containers configuration",
+      "description": "The initialization containers configuration",
       "additionalProperties": {
         "type": "object",
         "properties": {
