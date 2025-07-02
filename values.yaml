@@ -23,12 +23,10 @@ serviceAccount:
 podMonitor:
   enabled: false
 
-podSecurityContext:
-  {}
+podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext:
-  {}
+securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 33 # www-data
   # readOnlyRootFilesystem: true
