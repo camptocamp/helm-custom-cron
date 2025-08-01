@@ -2,7 +2,6 @@
 
 ## Properties
 
-- <a id="properties/common"></a>**`common`**
 - <a id="properties/global"></a>**`global`** _(object)_
   - <a id="properties/global/properties/image"></a>**`image`**: Refer to _[#/definitions/globalImage](#definitions/globalImage)_.
   - <a id="properties/global/properties/configMapNameOverride"></a>**`configMapNameOverride`**: Refer to _[#/definitions/configMapNameOverride](#definitions/configMapNameOverride)_.
@@ -32,7 +31,7 @@
 - <a id="properties/restartPolicy"></a>**`restartPolicy`** _(string)_: The restart policy.
 - <a id="properties/initContainers"></a>**`initContainers`** _(object)_: The initialization containers configuration. Can contain additional properties.
   - <a id="properties/initContainers/additionalProperties"></a>**Additional properties** _(object)_
-    - <a id="properties/initContainers/additionalProperties/properties/image"></a>**`image`**: Refer to _[#/definitions/image](#definitions/image)_.
+    - <a id="properties/initContainers/additionalProperties/properties/image"></a>**`image`** _(required)_: Refer to _[#/definitions/image](#definitions/image)_.
     - <a id="properties/initContainers/additionalProperties/properties/env"></a>**`env`**: Refer to _[#/definitions/env](#definitions/env)_.
     - <a id="properties/initContainers/additionalProperties/properties/resources"></a>**`resources`**: Refer to _[#/definitions/resources](#definitions/resources)_.
     - <a id="properties/initContainers/additionalProperties/properties/command"></a>**`command`**: Refer to _[#/definitions/command](#definitions/command)_.
@@ -41,7 +40,7 @@
     - <a id="properties/initContainers/additionalProperties/properties/volumeDevices"></a>**`volumeDevices`**: Refer to _[#/definitions/volumeDevices](#definitions/volumeDevices)_.
 - <a id="properties/containers"></a>**`containers`** _(object)_: The containers configuration. Can contain additional properties.
   - <a id="properties/containers/additionalProperties"></a>**Additional properties** _(object)_
-    - <a id="properties/containers/additionalProperties/properties/image"></a>**`image`**: Refer to _[#/definitions/image](#definitions/image)_.
+    - <a id="properties/containers/additionalProperties/properties/image"></a>**`image`** _(required)_: Refer to _[#/definitions/image](#definitions/image)_.
     - <a id="properties/containers/additionalProperties/properties/env"></a>**`env`**: Refer to _[#/definitions/env](#definitions/env)_.
     - <a id="properties/containers/additionalProperties/properties/resources"></a>**`resources`**: Refer to _[#/definitions/resources](#definitions/resources)_.
     - <a id="properties/containers/additionalProperties/properties/command"></a>**`command`**: Refer to _[#/definitions/command](#definitions/command)_.
@@ -83,28 +82,26 @@
 - <a id="definitions/nodeSelector"></a>**`nodeSelector`** _(object)_: [helm-common] Pod: Node selector.
 - <a id="definitions/image"></a>**`image`** _(object)_: [helm-common] Container: Image configuration.
   - **Any of**
-    - <a id="definitions/image/anyOf/0"></a>
-    - <a id="definitions/image/anyOf/1"></a>
   - <a id="definitions/image/properties/repository"></a>**`repository`** _(string, required)_: Image repository.
   - <a id="definitions/image/properties/tag"></a>**`tag`** _(string)_: Image tag, used if the sha is not defined.
-  - <a id="definitions/image/properties/sha"></a>**`sha`** _(['null', 'string'])_: Image sha.
+  - <a id="definitions/image/properties/sha"></a>**`sha`** _(null or string)_: Image sha.
 - <a id="definitions/env"></a>**`env`** _(object)_: [helm-common] Container: Environment variables. Can contain additional properties.
   - <a id="definitions/env/additionalProperties"></a>**Additional properties**
     - **One of**
       - <a id="definitions/env/additionalProperties/oneOf/0"></a>_object_
-        - <a id="definitions/env/additionalProperties/oneOf/0/properties/type"></a>**`type`** _(string, required)_: Disable the environment variable. Must be one of: `["none"]`.
+        - <a id="definitions/env/additionalProperties/oneOf/0/properties/type"></a>**`type`** _(string, required)_: Disable the environment variable. Must be one of: "none".
       - <a id="definitions/env/additionalProperties/oneOf/1"></a>_object_
-        - <a id="definitions/env/additionalProperties/oneOf/1/properties/type"></a>**`type`** _(string)_: Environment variable from a direct value. Must be one of: `["value"]`. Default: `"value"`.
-        - <a id="definitions/env/additionalProperties/oneOf/1/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: `[0, 1]`. Default: `0`.
+        - <a id="definitions/env/additionalProperties/oneOf/1/properties/type"></a>**`type`** _(string)_: Environment variable from a direct value. Must be one of: "value". Default: `"value"`.
+        - <a id="definitions/env/additionalProperties/oneOf/1/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: 0 or 1. Default: `0`.
         - <a id="definitions/env/additionalProperties/oneOf/1/properties/value"></a>**`value`** _(string, required)_: Value of the environment variable.
       - <a id="definitions/env/additionalProperties/oneOf/2"></a>_object_
-        - <a id="definitions/env/additionalProperties/oneOf/2/properties/type"></a>**`type`** _(string, required)_: Environment variable from a ConfigMap or a Secret. Must be one of: `["configMap", "secret"]`.
-        - <a id="definitions/env/additionalProperties/oneOf/2/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: `[0, 1]`. Default: `0`.
+        - <a id="definitions/env/additionalProperties/oneOf/2/properties/type"></a>**`type`** _(string, required)_: Environment variable from a ConfigMap or a Secret. Must be one of: "configMap" or "secret".
+        - <a id="definitions/env/additionalProperties/oneOf/2/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: 0 or 1. Default: `0`.
         - <a id="definitions/env/additionalProperties/oneOf/2/properties/name"></a>**`name`** _(string, required)_: Name of the ConfigMap or Secret, if 'self', same name as the service.
         - <a id="definitions/env/additionalProperties/oneOf/2/properties/key"></a>**`key`** _(string, required)_: Key of the ConfigMap or Secret.
       - <a id="definitions/env/additionalProperties/oneOf/3"></a>_object_
-        - <a id="definitions/env/additionalProperties/oneOf/3/properties/type"></a>**`type`** _(string, required)_: Free valueFrom for an environment variable. Must be one of: `["valueFrom"]`.
-        - <a id="definitions/env/additionalProperties/oneOf/3/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: `[0, 1]`. Default: `0`.
+        - <a id="definitions/env/additionalProperties/oneOf/3/properties/type"></a>**`type`** _(string, required)_: Free valueFrom for an environment variable. Must be one of: "valueFrom".
+        - <a id="definitions/env/additionalProperties/oneOf/3/properties/order"></a>**`order`** _(integer)_: Order of the environment variable. Must be one of: 0 or 1. Default: `0`.
         - <a id="definitions/env/additionalProperties/oneOf/3/properties/valueFrom"></a>**`valueFrom`** _(object, required)_
 - <a id="definitions/resources"></a>**`resources`** _(object)_: [helm-common] Container: The container resources.
 - <a id="definitions/command"></a>**`command`** _(array)_: Container: command.
