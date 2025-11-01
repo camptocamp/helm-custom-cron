@@ -92,7 +92,7 @@ repos:
           - github-workflows-require-timeout
       - id: check-renovate
         additional_dependencies:
-          - pyjson5==1.6.9 # pypi
+          - pyjson5==2.0.0 # pypi
   - repo: https://github.com/sirwart/ripsecrets
     rev: v0.1.11
     hooks:
