@@ -78,7 +78,7 @@ repos:
     hooks:
       - id: git-check
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.37.1
+    rev: 0.37.2
     hooks:
       - id: check-github-actions
       - id: check-github-workflows
@@ -92,7 +92,7 @@ repos:
           - github-workflows-require-timeout
       - id: check-renovate
         additional_dependencies:
-          - pyjson5==2.0.0 # pypi
+          - pyjson5==2.0.1 # pypi
   - repo: https://github.com/sirwart/ripsecrets
     rev: v0.1.11
     hooks:
