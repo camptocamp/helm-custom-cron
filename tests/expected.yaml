@@ -19,6 +19,7 @@ data:
   SERVICE_CONTAINER_BB_IMAGE_TAG: "latest"
   SERVICE_CONTAINER_CC_IMAGE_TAG: "1.0"
   SERVICE_CONTAINER_DD_IMAGE_TAG: "latest"
+
 ---
 # Source: custom-cron/templates/cronjob.yaml
 apiVersion: batch/v1
